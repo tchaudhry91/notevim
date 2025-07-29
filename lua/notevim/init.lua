@@ -23,7 +23,7 @@ function M.note(path)
 end
 
 function M.search(query)
-	require("notevim.search").search(query)
+	require("notevim.search").search(M.config.notes_dir, query)
 end
 
 function M.sync()
@@ -33,6 +33,8 @@ end
 function M.setup(opts)
 	opts = opts or {}
 	M.config = vim.tbl_deep_extend("force", M.config, opts)
+	M.config.notes_dir = vim.fn.simplify(M.config.notes_dir)
+	M.config.notes_dir = vim.fn.expand(M.config.notes_dir)
 end
 
 return M
