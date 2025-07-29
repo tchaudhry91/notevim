@@ -34,39 +34,73 @@
 - Comfortable with module system and require()
 - Ready for Step 2 implementation
 
+## Step 2: COMPLETED ✅
+**Date**: 2025-07-29
+**Concepts Taught**:
+- File path handling with concatenation and `vim.fn.simplify()`
+- Path expansion with `vim.fn.expand()`
+- Directory extraction with `vim.fn.fnamemodify(path, ":h")`
+- Directory creation with `vim.fn.mkdir(dir, "p")`
+- File existence checking with `vim.fn.filereadable()`
+- Buffer content manipulation with `vim.api.nvim_buf_set_lines()`
+- Configuration system with `vim.tbl_deep_extend()`
+
+**Implementation by Student**:
+- Added configurable `notes_dir` with default `~/Notes`
+- Implemented full `M.note(path)` function with:
+  - S3-style path support
+  - Automatic `.md` extension
+  - Nested directory creation
+  - "tags:" line for new notes only
+  - Proper error handling logic
+
+**Key Learning Moments**:
+- Initially had logic backwards for file existence check
+- Learned that `vim.cmd.edit()` creates files, affecting existence checks
+- Discovered need to check existence BEFORE opening file
+- Successfully debugged and fixed the logic independently
+
+**Testing Results**: 
+- New notes get "tags:" line correctly
+- Existing notes open without modification
+- Deeply nested paths work (tested 5 levels deep)
+- Configuration system works with custom directories
+
 ## Next Session Instructions
 
 **For Claude**: When student returns:
 
-1. **Welcome back**: Briefly recap Step 1 achievements
-2. **Use software-architect-planner agent**: For Step 2 teaching (note creation implementation)
+1. **Welcome back**: Recap Step 2 achievements (real note creation)
+2. **Use software-architect-planner agent**: For Step 3 teaching (search functionality)
 3. **Teaching approach**: 
-   - Explain file I/O concepts in Neovim/Lua
-   - Teach buffer creation and manipulation
-   - Guide through directory creation logic
-   - Let student write all implementation code
-4. **Step 2 Goals**: Implement actual note creation in `M.note(path)` function
+   - Explain ripgrep integration concepts
+   - Teach Telescope API basics
+   - Guide through quickfix fallback implementation
+   - Show how to get file modification times for "recent notes"
+4. **Step 3 Goals**: Implement search in `lua/notevim/search.lua`
 
-**Key Step 2 Concepts to Teach**:
-- `vim.fn.expand()` for path expansion
-- `vim.fn.mkdir()` for directory creation  
-- `vim.cmd.edit()` for opening files
-- Buffer manipulation with `vim.api.nvim_buf_set_lines()`
-- File path validation and error handling
+**Key Step 3 Concepts to Teach**:
+- `vim.fn.system()` for running external commands (ripgrep)
+- `vim.fn.glob()` for finding all note files
+- `vim.fn.getftime()` for file modification times
+- Telescope picker creation (if available)
+- Quickfix list as fallback
+- Parsing ripgrep output
 
 **Student's Preferred Learning Style**:
 - Wants to understand "why" behind each decision
 - Prefers hands-on implementation over theory
 - Likes step-by-step building with frequent testing
 - Responds well to concept explanations followed by guided practice
+- Good at debugging when given hints about the issue
 
 ## Current Plugin State
 - Basic architecture complete and tested
-- All command registrations working
-- Ready for actual functionality implementation
-- Student has strong foundation for next steps
+- Note creation fully functional with configuration
+- Ready for search implementation
+- Student has strong foundation for advanced features
 
 ## Git Status
-- All Step 1 work committed to main branch
+- All Step 2 work ready to commit
 - Clean working directory
-- Ready for Step 2 development
+- Ready for Step 3 development
