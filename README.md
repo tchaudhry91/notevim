@@ -16,7 +16,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "your-username/notevim",
+  "tchaudhry91/notevim",
   config = function()
     require("notevim").setup({
       notes_dir = "~/Notes",  -- Default: ~/Notes
